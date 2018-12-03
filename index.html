@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <link rel="stylesheet" href="css/Resetstyle.css">
+  <link rel="stylesheet" href="css/styles_Atheer.css">
+
+  <title>Restaurant Reviews</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1><a href="/" tabindex="0">Restaurant Reviews</a></h1>
+    </nav>
+  </header>
+  <ul class="skip">
+    <li><a href="#content">Skip to main content</a></li>
+</ul>
+  <main id="maincontent" role="main">
+    <section id="map-container">
+      <div id="map" role="application" aria-hidden="true"></div>
+    </section>
+
+    <section id="content">
+      <div class="filter-options">
+        <h2 title='Filter Results' tabindex="0">Filter Results</h2>
+        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" aria-label="Select by Neighborhood">
+          <option value="all">All Neighborhoods</option>
+        </select>
+        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()"  aria-label="Select by Cuisine ">
+          <option value="all">All Cuisines</option>
+        </select>
+      </div>
+      <ul tabindex=0 id="restaurants-list" ></ul>
+    </section>
+  </main>
+  <script>
+  //Register a service worker
+  if ('serviceWorker' in navigator) {
+window.addEventListener('load', function() {
+navigator.serviceWorker.register('sw.js').then(function(registration) {
+  console.log('ServiceWorker  successful');
+});
+});
+}
+</script>
+  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
+  <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4nzQKex5RytGx0dc0dHGU0dzRikOB3mU&libraries=places&callback=initMap"></script>
+  <footer id="footer">
+    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  </footer>
+</body>
+
+</html>
